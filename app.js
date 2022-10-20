@@ -89,9 +89,14 @@ function getColorFromHash() {
 }
 
 function colorCopied(color) {
-    new Toast({
+    const luminance = chroma(color).luminance()
+    const textColor = luminance > 0.8 ? 'black' : 'white';
+    generateToast({
         message: `Color copied! ${color}`,
-    });
+        background: color,
+        color: textColor,
+        length: "2000ms",
+    })
 }
 
 setRandomColors(true)
